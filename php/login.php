@@ -28,6 +28,7 @@
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary btn-md" name="sign_in">Sign In</button>
 			</div>
+			<?php include('loginUser.php'); ?>
 			<div class="text-center small" style="color:#674288;">Dont have an Account <a href="signUp.php">Create One</a></div>
 		</form>
 		
