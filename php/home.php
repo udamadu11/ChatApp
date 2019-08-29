@@ -20,12 +20,69 @@
 				</div>
 				<div class="left-chat">
 					<ul>
-						<?php include("include/getUserData.php") ?>
+						<!--<?php include("include/getUserData.php") ?> -->
 					</ul>
 				</div>
 			</div>
-			<div class="">
-				
+			<div class="col-md-9 col-sm-9 col-xs-12 right-sidebar" >
+				<div class="row">
+					<?php 
+						$user = $_SESSION['email'];
+						$getUser = "SELECT FROM users WHERE email = '$user'";
+						$rUser =mysqli_query($con,$getUser);
+						$row = mysqli_fetch_array($rUser);
+
+						$userId = $row['user_id'];
+						$user_name = $row['user_name'];
+					?>
+					<?php 
+						if (isset($_GET['user_name'])) {
+							global $con;
+
+							$get_username = $_GET['user_name'];
+							$get_user = "SELECT * FROM users WHERE user_name= '$get_user'";
+							$rUser = mysqli_query($con,$get_user);
+							$row_user = mysqli_fetch_array($rUser);
+
+							$username =$row_user['user_name'];
+							$user_profile_image = $row_user['profilePic'];
+
+						}
+
+						$total_message = "SELECT *FROM users_chat WHERE(sender = 'user_name' AND receiver = 'username') OR (receiver = 'user_name' AND sender = 'username')";
+						$rMessage = mysqli_query($con,$total_message);
+						$total = mysqli_num_rows($rMessage);
+
+					?>
+					<div class="col-md-12 right-header">
+						<div class="right-header-img">
+							<img src="<?php echo" $user_profile_image"; ?>">
+						</div>
+						<div class="right-header-detail">
+							<form method="post">
+								<p><?php echo "$username"; ?></p>
+								<span><?php echo $total; ?>message</span>&nbsp &nbsp
+								<button name="logout" class="btn btn-danger">Logout</button>
+							</form>
+							<?php
+								if (isset($_POST['logout'])) {
+									$update_msg = mysqli_query($con,"UPDATE users SET log_in='offine' WHERE user_name= $user_name");
+									header("Location:logout.php");
+									exit();
+								}
+							?>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div id="scrolling_to-bottom" class="col-md-12 right-header-contentChat">
+						<?php 
+							$update_msg = mysqli_query($con,"UPDATE users_chat SET status ='read' WHERE sender='$username' AND receiver = '$user_name'");
+							$sel_msg = "SELECT * FROM users_chat WHERE (sender = '$user_name' AND receiver = '$username') OR  (receiver = '$user_name' AND sender = '$username') ORDER BY ASC";
+							$run_msg = mysqli_query($con,$sel_msg);
+						?>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
