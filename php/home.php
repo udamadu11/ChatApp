@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php session_start();
+include("include/connection.php");
+ ?>
 <html>
 <head>
 	<title></title>
@@ -28,7 +31,7 @@
 				<div class="row">
 					<?php 
 						$user = $_SESSION['email'];
-						$getUser = "SELECT FROM users WHERE email = '$user'";
+						$getUser = "SELECT * FROM users WHERE email = '$user'";
 						$rUser =mysqli_query($con,$getUser);
 						$row = mysqli_fetch_array($rUser);
 
@@ -80,12 +83,83 @@
 							$update_msg = mysqli_query($con,"UPDATE users_chat SET status ='read' WHERE sender='$username' AND receiver = '$user_name'");
 							$sel_msg = "SELECT * FROM users_chat WHERE (sender = '$user_name' AND receiver = '$username') OR  (receiver = '$user_name' AND sender = '$username') ORDER BY ASC";
 							$run_msg = mysqli_query($con,$sel_msg);
-						?>
+
+							while ($row = mysqli_fetch_array($run_msg)) {
+								$sender = $row['sender'];
+								$receiver = $row['receiver'];
+								$content = $row['content'];
+								$date = $row['mdate'];
+						
+							?>
+								<ul>
+									<?php
+
+										if ($user_name == $sender AND $username == $receiver) {
+											echo "
+												<li>
+													<div class='rightside-chat'>
+														<span>$username<small>$date</small></span>
+														<p>$date</p>
+													</div>
+												</li>
+
+											";
+										}
+
+										else if($user_name == $receiver AND $username == $sender) {
+											echo "
+												<li>
+													<div class='rightside-chat'>
+														<span>$username<small>$date</small></span>
+														<p>$date</p>
+													</div>
+												</li>
+
+											";
+										}
+
+
+									 ?>
+								</ul>
+						<?php 
+							}
+						 ?>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 rightside-chat-textbox">
+						<form method="post">
+							<input type="text" name="msg_content" autocomplete="off" placeholder="write your msg ....">
+							<button class="btn" name="submit"><i class="fa fa-telegram" aria-hidden ="true"></i></button>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<?php
+		if (isset($_POST['submit'])) {
+			$msg = htmlentities($_POST['content']);
+			if ($msg == "") {
+				echo "
+					<div class='alert alert-danger'>
+						<strong><center>Message was unable to send</center></strong>
+					</div>
+				";
+			}
+			else if (strlen($msg) > 100) {
+				echo "
+					<div class='alert alert-danger'>
+						<strong><center>Message is too long.use 100 characters</center></strong>
+					</div>
+				";
+			}
+			else{
+				$insert = "INSERT INTO users_chat(sender,receiver,content,status,mdate) VALUES('$user_name','$username','$content','$msg','unread',NOW())";
+				$rInsert = mysqli_query($con,$insert);
+			}
+		}
+	 ?>
 
 </body>
 </html>
