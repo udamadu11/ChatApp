@@ -18,7 +18,7 @@
 			</div>
 			<div class="form-group">
 				<label>User Name</label>
-				<input type="text" name="user_name" class="form-control" placeholder="abc@gmail.com" autocomplete="off" required>
+				<input type="text" name="user_name" class="form-control" placeholder="user name" autocomplete="off" required>
 			</div>
 			<div class="form-group">
 				<label>Email</label>

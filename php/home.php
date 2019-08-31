@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<?php session_start();
+<?php 
+session_start();
 include("include/connection.php");
+
  ?>
 <html>
 <head>
@@ -23,7 +25,7 @@ include("include/connection.php");
 				</div>
 				<div class="left-chat">
 					<ul>
-						<!--<?php include("include/getUserData.php") ?> -->
+						<?php include("getUserData.php"); ?> 
 					</ul>
 				</div>
 			</div>
@@ -43,23 +45,23 @@ include("include/connection.php");
 							global $con;
 
 							$get_username = $_GET['user_name'];
-							$get_user = "SELECT * FROM users WHERE user_name= '$get_user'";
+							$get_user = "SELECT * FROM users WHERE user_name= '$get_username'";
 							$rUser = mysqli_query($con,$get_user);
 							$row_user = mysqli_fetch_array($rUser);
 
 							$username =$row_user['user_name'];
-							$user_profile_image = $row_user['profilePic'];
+							$user_profile_image = $row_user['profilepic'];
 
 						}
 
-						$total_message = "SELECT *FROM users_chat WHERE(sender = 'user_name' AND receiver = 'username') OR (receiver = 'user_name' AND sender = 'username')";
+						$total_message = "SELECT * FROM users_chat WHERE(sender = '$user_name' AND receiver = '$username') OR (receiver = '$user_name' AND sender = '$username')";
 						$rMessage = mysqli_query($con,$total_message);
 						$total = mysqli_num_rows($rMessage);
 
 					?>
 					<div class="col-md-12 right-header">
 						<div class="right-header-img">
-							<img src="<?php echo" $user_profile_image"; ?>">
+							<img src="<?php echo "$user_profile_image"; ?>">
 						</div>
 						<div class="right-header-detail">
 							<form method="post">
@@ -81,13 +83,13 @@ include("include/connection.php");
 					<div id="scrolling_to-bottom" class="col-md-12 right-header-contentChat">
 						<?php 
 							$update_msg = mysqli_query($con,"UPDATE users_chat SET status ='read' WHERE sender='$username' AND receiver = '$user_name'");
-							$sel_msg = "SELECT * FROM users_chat WHERE (sender = '$user_name' AND receiver = '$username') OR  (receiver = '$user_name' AND sender = '$username') ORDER BY ASC";
+							$sel_msg = "SELECT * FROM users_chat WHERE (sender = '$user_name' AND receiver = '$username') OR  (receiver = '$user_name' AND sender = '$username') ORDER BY 1 ASC";
 							$run_msg = mysqli_query($con,$sel_msg);
 
-							while ($row = mysqli_fetch_array($run_msg)) {
+							while($row = mysqli_fetch_array($run_msg)) {
 								$sender = $row['sender'];
 								$receiver = $row['receiver'];
-								$content = $row['content'];
+								$msg_content = $row['msg_content'];
 								$date = $row['mdate'];
 						
 							?>
@@ -139,7 +141,7 @@ include("include/connection.php");
 	</div>
 	<?php
 		if (isset($_POST['submit'])) {
-			$msg = htmlentities($_POST['content']);
+			$msg = htmlentities($_POST['msg_content']);
 			if ($msg == "") {
 				echo "
 					<div class='alert alert-danger'>
@@ -155,7 +157,7 @@ include("include/connection.php");
 				";
 			}
 			else{
-				$insert = "INSERT INTO users_chat(sender,receiver,content,status,mdate) VALUES('$user_name','$username','$content','$msg','unread',NOW())";
+				$insert = "INSERT INTO users_chat(sender,receiver,msg_content,status,mdate) VALUES('$user_name','$username','$msg','unread',NOW())";
 				$rInsert = mysqli_query($con,$insert);
 			}
 		}
