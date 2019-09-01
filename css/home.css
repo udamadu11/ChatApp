@@ -4,11 +4,10 @@
 }
 .left-sidebar{
 	background-color: #3A3A3A;
-	padding: 0px;
 }
 .searchbox{
 	width: 100%;
-	padding: 27px 10px;
+	padding: 31px 10px;
 	border-bottom: 2px solid #000;
 }
 .form-control,.search-icon,.search-icon:hover{
@@ -20,21 +19,21 @@
 .form-control:focus{
 	border:1px solid #fff;
 }
-.chat-left-img,.chat-left-datail{
+.right-header-img{
 	float: left;
 }
 .left-chat{
-	overflow: scroll;
+	position: absolute;
+	overflow-y: scroll;
 }
 .left-chat ul{
 	overflow: hidden;
-	padding: 0px;
 }
 .left-chat ul li{
 	list-style: none;
 	width: 100px;
 	float: left;
-	margin: 10px 0px 8px 15px;
+	margin: 10px 0px 8px 10px;
 }
 .chat-left-img img{
 	width: 50px;
@@ -66,19 +65,35 @@
 	border-left: 2px solid #000;
 }
 .right-header{
+	background-color: #3A3A3A;
+	color: #fff;
 	border-bottom: 2px solid #000;
-	margin: 0px;
-	padding: 0px;
+	
 }
-.right-header-detail p{
-	margin: 0px;
+.right-header-img{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.right-header-details p{
+	
 	color: #fff;
 	font-weight: bold;
-	padding-top: 5px;
+	float: left;
+	padding: 2px;
+	margin-left: 10px;
+	margin-top: 10px
 }
-.right-header-detail span{
+.right-header-details span{
 	color: #9FA5AF;
 	font-size: 12px;
+	float: left;
+	margin-left: 10px;
+	margin-top: 17px
+}
+.right-header-details button{
+	float: right;
+	margin-top: 30px;
+	
 }
 .rightside-left-chat{
 	float: left;
@@ -92,6 +107,7 @@
 	margin-right: 35px;
 }
 .right-header-contentChat{
+	overflow-y: scroll;
 	background-color: #FFFFFF;
 	position: relative;
 }

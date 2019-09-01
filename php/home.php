@@ -13,15 +13,17 @@ else{
 	<link rel="stylesheet" type="text/css" href="../css/home.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 </head>
 <body>
 	<div class="container main-section">
 		<div class="row">
-			<div class="col-md-3 col-sm-3 col-xs-12 left-sidebar">
+			<div class="col-md-3 col-xs-12 left-sidebar">
 				<div class="input-group searchbox">
 					<div class="input-group-btn">
-						<center><a href="include/findFiend.php"><button class="btn btn-default search-icon" name="searchUser" type="submit">Add New user</button></a></center>
+						<center><a href="include/findFiend.php"><button class="btn btn-danger search-icon" name="searchUser" type="submit">Add New user</button></a></center>
 					</div>
 				</div>
 				<div class="left-chat">
@@ -62,9 +64,9 @@ else{
 					?>
 					<div class="col-md-12 right-header">
 						<div class="right-header-img">
-							<img src="<?php echo "$user_profile_image"; ?>">
+							<img src="<?php echo "$user_profile_image"; ?>" width="80px" height="80px">
 						</div>
-						<div class="right-header-detail">
+						<div class="right-header-details">
 							<form method="post">
 								<p><?php echo "$username"; ?></p>
 								<span><?php echo $total; ?>message</span>&nbsp &nbsp
@@ -163,7 +165,18 @@ else{
 			}
 		}
 	 ?>
-
+	 <script>
+	 	$('#scrolling_to-bottom').animate({
+	 		scrollTop: $('#scrolling_to-bottom').get(0).scrollHeight
+	 	}, 1000);
+	 </script>
+	 <script type="text/javascript">
+	 	$(document).ready(function(){
+	 		var height = $(window).height();
+	 		$('.left-chat').css('height', (height - 92) + 'px');
+	 		$('.right-header-contentChat').css('height', (height - 163) + 'px');
+	 	});
+	 </script>
 </body>
 </html>
 <?php } ?>
