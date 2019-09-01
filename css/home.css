@@ -80,17 +80,18 @@
 	color: #9FA5AF;
 	font-size: 12px;
 }
-.rightside-left-chat,.rightside-right-chat{
+.rightside-left-chat{
 	float: left;
 	width: 80%;
 	position: relative;
 }
 .rightside-right-chat{
 	float: right;
+	width: 80%;
+	position: relative;
 	margin-right: 35px;
 }
 .right-header-contentChat{
-	overflow-y: scroll;
 	background-color: #FFFFFF;
 	position: relative;
 }
@@ -107,7 +108,7 @@
 .right-header-contentChat .rightside-right-chat p{
 	background-color: #94C2ED;
 }
-.right-chat-textbox input{
+.rightside-chat-textbox input{
 	width: 80%;
 	height: 40px;
 	border: 2px solid #3d85ca;
@@ -115,10 +116,10 @@
 	padding: 0px 10px;
 	border: 1px solid #c1c1c1;
 }
-.right-chat-textbox button{
+.rightside-chat-textbox button{
 	height: 40px;
 	width: 70px;
-	margin-left: 20PX;
+	margin-left: 10PX;
 }
 .rightside-left-chat span i,.rightside-right-chat span i{
 	color: #86BB71;
@@ -133,25 +134,7 @@
 .rightside-right-chat span small, .rightside-left-chat span small{
 	color: #BDBDC2;
 }
-.rightside-left-chat:before{
-	content: " ";
-	position: absolute;
-	top: 14px;
-	left: 15px;
-	bottom: 150px;
-	border: 15px solid transparent;
-	border-bottom-color: #86BB71;
-	z-index: 1;
-} 
-.rightside-right-chat:before{
-	content: " ";
-	position: absolute;
-	top: 14px;
-	left: 15px;
-	bottom: 150px;
-	border: 15px solid transparent;
-	border-bottom-color: #94C2ED;
-} 
+
 @media only screen and (max-width: 320px){
 	.main-section{
 		display: none;

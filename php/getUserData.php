@@ -14,12 +14,12 @@
 				<div class= 'chat-left-img'>
 					<img src='$user_profile'>
 				</div>
-				<div class='chat-left-datail'>
+				<div class='chat-left-datails'>
 					<p><a href='home.php?user_name=$user_name'>$user_name</a></p>";
 				if ($login == "online") {
 					echo "<span><i class='fa fa-circle' aria-hidden='true'></i>Online<span>";
 				}else{
-					echo "<span><i class='fa fa-circle' aria-hidden='offline'></i>Online<span>";
+					echo "<span><i class='fa fa-circle-o' aria-hidden='true'></i>Offline</span>";
 				}
 				"
 				</div>

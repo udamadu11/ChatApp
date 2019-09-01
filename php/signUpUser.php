@@ -25,10 +25,10 @@ include ('include/connection.php');
 			exit();
 		}
 		if ($rand == 1) {
-				$profilePic = "images/man2.png";
+				$profilePic = "../images/man2.png";
 			}
 		else if ($rand ==2) {
-				$profilePic = "images/man11.png";
+				$profilePic = "../images/man11.png";
 			}
 		$insert = "INSERT INTO users(user_name,email,password,profilePic,user_dis,user_gender) VALUES('$name','$email','$password','$profilePic','$district','$gender')";
 		$query = mysqli_query($con, $insert);

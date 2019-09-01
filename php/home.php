@@ -72,7 +72,7 @@ else{
 							</form>
 							<?php
 								if (isset($_POST['logout'])) {
-									$update_msg = mysqli_query($con,"UPDATE users SET log_in='offine' WHERE user_name= $user_name");
+									$update_msg = mysqli_query($con,"UPDATE users SET log_in='offine' WHERE user_name= '$user_name'");
 									header("Location:logout.php");
 									exit();
 								}
@@ -100,8 +100,8 @@ else{
 										if ($user_name == $sender AND $username == $receiver) {
 											echo "
 												<li>
-													<div class='rightside-chat'>
-														<span>$username<small>$date</small></span>
+													<div class='rightside-right-chat'>
+														<span>$username<small>$date</small></span><br><br>
 														<p>$msg_content</p>
 													</div>
 												</li>
@@ -112,8 +112,8 @@ else{
 										else if($user_name == $receiver AND $username == $sender) {
 											echo "
 												<li>
-													<div class=\"rightside-chat\">
-														<span>$username<small>$date</small></span>
+													<div class=\"rightside-left-chat\">
+														<span>$username<small>$date</small></span><br><br>
 														<p>$msg_content</p>
 													</div>
 												</li>
@@ -133,7 +133,7 @@ else{
 					<div class="col-md-12 rightside-chat-textbox">
 						<form method="post">
 							<input type="text" name="msg_content" autocomplete="off" placeholder="write your msg ....">
-							<button class="btn" name="submit"><i class="fa fa-telegram" aria-hidden ="true"></i></button>
+							<button class="btn" name="submit"><i class="fa fa-telegram"></i></button>
 						</form>
 					</div>
 				</div>
