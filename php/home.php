@@ -74,7 +74,7 @@ else{
 							</form>
 							<?php
 								if (isset($_POST['logout'])) {
-									$update_msg = mysqli_query($con,"UPDATE users SET log_in='offine' WHERE user_name= '$user_name'");
+									$update_msg = mysqli_query($con,"UPDATE users SET log_in='offline' WHERE user_name= '$user_name'");
 									header("Location:logout.php");
 									exit();
 								}

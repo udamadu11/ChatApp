@@ -4,8 +4,10 @@
 }
 .left-sidebar{
 	background-color: #3A3A3A;
+	overflow: hidden;
 }
 .searchbox{
+
 	width: 100%;
 	padding: 31px 10px;
 	border-bottom: 2px solid #000;
